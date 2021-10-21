@@ -1,0 +1,25 @@
+GET http://localhost:5050/api/vender
+
+###
+
+POST http://localhost:5050/signup
+Content-Type: application/json
+
+{
+    "username": "Rahul",
+    "email": "rahulbhayani4@gmail.com",
+    "password": "Rahul123"
+}
+
+###
+POST http://localhost:5050/login
+Content-Type: application/json
+
+{
+    "email": "rahulbhayani4@gmail.com",
+    "password": "Rahul123"
+}
+
+###
+
+GET http://localhost:5050/api/users
