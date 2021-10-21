@@ -57,7 +57,7 @@ function Transaction() {
                         <Form.Group as={Col} controlId="formGridEmail">
                             <Form.Label>Vender Name</Form.Label>
                             <br />
-                            <select style={{ width: "100%", height: "50%" }} onChange={(e) => setvender_name(e.target.value)}>
+                            <select style={{ width: "100%", height: "50%" }} value="" onChange={(e) => setvender_name(e.target.value)}>
                                 <option>Please select ...</option>
                                 {
                                     VenderNameList &&
@@ -124,7 +124,7 @@ function Transaction() {
                     <Form.Label>Note</Form.Label>
                     <Form.Control type="email" placeholder="Note" onChange={(e) => setnote(e.target.value)} />
                     <br />
-                    <Button style={{ margin: "0px auto" }} onClick={() => create()}>Save</Button>
+                    <Button style={{ margin: "0px auto",display:"flex" }} onClick={() => create()}>Save</Button>
                 </Form>
                 <br />
             </Card>
