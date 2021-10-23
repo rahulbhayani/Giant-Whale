@@ -1,8 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
 import Navbar from './Navbar'
+import { ArrowRight } from 'react-bootstrap-icons';
 
 function TransactionList() {
+    const history = useHistory()
     const [TransactionData, setTransactionData] = useState('')
     const [Total, setTotal] = useState('')
     let sum = 0
@@ -28,20 +31,22 @@ function TransactionList() {
         <div>
             <Navbar />
             <div>
-                <table className="table">
+                
+                <table className="table-bordered">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Vender Name</th>
-                            <th>Transaction Type</th>
-                            <th>Currency</th>
-                            <th>Rate</th>
-                            <th>Amount(Credit)</th>
-                            <th>Amount(Debit)</th>
-                            <th>Discount</th>
-                            <th>Final Amount</th>
-                            <th>Transaction Data</th>
-                            <th>Note</th>
+                        <tr style={{ textAlign: "center" }}>
+                            <th style={{ width: "2%" }}>#</th>
+                            <th style={{ width: "5%" }}>Vender Name</th>
+                            <th style={{ width: "5%" }}>Transaction Type</th>
+                            <th style={{ width: "5%" }}>Currency</th>
+                            <th style={{ width: "5%" }}>Rate</th>
+                            <th style={{ width: "5%" }}>Amount(Credit)</th>
+                            <th style={{ width: "5%" }}>Amount(Debit)</th>
+                            <th style={{ width: "5%" }}>Discount</th>
+                            <th style={{ width: "5%" }}>Final Amount</th>
+                            <th style={{ width: "5%" }}>Transaction Data</th>
+                            <th style={{ width: "10%" }}>Note</th>
+                            <th style={{ width: "4%" }}>Print</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,9 +67,33 @@ function TransactionList() {
                                             <td>{item.final_amount}</td>
                                             <td>{item.transaction_date}</td>
                                             <td>{item.note}</td>
+                                            <td><ArrowRight onClick={() =>
+                                                history.push({
+                                                    pathname: '/print',
+                                                    state: {
+                                                        vender_name: item.vender_name,
+                                                        transaction_type: item.transaction_type,
+                                                        currency: item.currency,
+                                                        rate: item.rate,
+                                                        amount: item.amount,
+                                                        discount: item.discount,
+                                                        final_amount: item.final_amount,
+                                                        transaction_date: item.transaction_date,
+                                                        note: item.note
+                                                    }
+                                                })}></ArrowRight></td>
                                         </tr>
                                     ))}
-                                </>) : ("Not found data")}
+                                </>) : (
+                                <div>
+                                    <br />
+                                    <button class="btn btn-primary" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Loading...
+                                    </button>
+                                </div>
+
+                            )}
                     </tbody>
                 </table>
             </div>

@@ -7,6 +7,7 @@ import Transaction from './Component/Transaction';
 import Vender from './Component/Vender';
 import Home from './Home';
 import TransactionList from './Component/TransactionList';
+import Print_Bill from './Component/Print_Bill';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/tran" component={Transaction}/>
       <Route path="/vender" component={Vender}/>
       <Route path="/list" component={TransactionList}/>
+      <Route path="/print" component={Print_Bill}/>
 
     </Switch>
   </Router>
