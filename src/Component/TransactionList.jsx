@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import { ArrowRight } from 'react-bootstrap-icons';
 
 function TransactionList() {
+    
     const history = useHistory()
     const [TransactionData, setTransactionData] = useState('')
     const [Total, setTotal] = useState('')
