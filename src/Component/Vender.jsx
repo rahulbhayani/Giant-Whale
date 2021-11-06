@@ -47,8 +47,8 @@ function Vender() {
         vendernamedata()
     }
     return (
-        <div>
-            <Navbar />
+        <div><main id="main" class="main">
+            
 
             <input type="name" placeholder="Vender Name" onChange={(e) => {
                 setvender_name(e.target.value);
@@ -89,7 +89,7 @@ function Vender() {
                 </tbody>
             </Table>
 
-        </div>
+        </main></div>
     )
 }
 

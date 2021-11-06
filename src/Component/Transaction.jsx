@@ -45,8 +45,6 @@ function Transaction() {
     }, [])
     return (
         <div>
-            <Navbar />
-            <br />
             <Card style={{ width: "50rem", margin: "0px auto" }}>
                 <br />
                 <Form onSubmit={handelSubmit}>
@@ -118,7 +116,7 @@ function Transaction() {
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Transaction Date:</Form.Label>
-                            <Form.Control type="date" placeholder="Transaction Date" onChange={(e) => settransaction_date(e.target.value)} />
+                            <Form.Control type="date" placeholder="Transaction Date" value="2021-10-22" onChange={(e) => settransaction_date(e.target.value)} />
                         </Form.Group>
                     </Row>
                     <Form.Label>Note:</Form.Label>

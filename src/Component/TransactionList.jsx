@@ -10,6 +10,7 @@ function TransactionList() {
     const [Total, setTotal] = useState('')
     const [TotalDebit, setTotalDebit] = useState(0)
     const [TotalCredit, setTotalCredit] = useState(0)
+    
     const userTransaction = () => {
         axios.get('http://localhost:5050/api/transactiondata', {
             headers: {
@@ -33,9 +34,9 @@ function TransactionList() {
     useEffect(() => {
         userTransaction()
     }, [])
+
     return (
         <div>
-            <Navbar />
             <div>
                 
                 <table className="table-bordered">
