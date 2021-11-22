@@ -39,6 +39,67 @@ function TransactionList() {
         <div>
             <div>
                 
+            <table class="table datatable">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Vender Name</th>
+                    <th scope="col">Currency</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Credit</th>
+                    <th scope="col">Debit</th>
+                    <th scope="col">Transaction Data</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Print</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {TransactionData ?
+                    (
+                        <>
+                            {TransactionData && TransactionData.map((item, id) => (
+                                <tr key={id}>
+                                    <th scope="row">{id}</th>
+                                    <td>{item.vender_name}</td>
+                                    {/* <td>{item.transaction_type}</td> */}
+                                    <td>{item.currency}</td>
+                                    <td>{item.amount}</td>
+                                    <td>{item.rate}</td><td>{item.discount}</td>
+                                    <td>{item.transaction_type === "Debit" || item.transaction_type === "Sale" ? "" :item.final_amount}</td>
+                                    <td>{item.transaction_type === "Debit" || item.transaction_type === "Sale" ? item.final_amount : ""}</td>
+                                    <td>{item.transaction_date}</td>
+                                    <td>{item.note}</td>
+                                    <td><ArrowRight onClick={() =>
+                                        history.push({
+                                            pathname: '/print',
+                                            state: {
+                                                vender_name: item.vender_name,
+                                                transaction_type: item.transaction_type,
+                                                currency: item.currency,
+                                                rate: item.rate,
+                                                amount: item.amount,
+                                                discount: item.discount,
+                                                final_amount: item.final_amount,
+                                                transaction_date: item.transaction_date,
+                                                note: item.note
+                                            }
+                                        })}></ArrowRight></td>
+                                </tr>
+                            ))}
+                        </>) : (
+                        <div>
+                            <br />
+                            <button class="btn btn-primary" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading...
+                            </button>
+                        </div>
+
+                    )}
+                </tbody>
+                </table>
                 <table className="table-bordered">
                     <thead>
                         <tr style={{ textAlign: "center" }}>

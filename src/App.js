@@ -1,5 +1,6 @@
 import { BrowserRouter as Router,Switch, Route, Redirect } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
+import React, { useEffect, useState } from 'react'
 
 import './App.css';
 
@@ -20,7 +21,6 @@ import Vender from './Component/Vender';
 import Home from './Home';
 import TransactionList from './Component/TransactionList';
 import Print_Bill from './Component/Print_Bill';
-import Navbar from './Component/Navbar';
 import Headerbar from './Component/Header';
 import Sidebar from './Component/Sidebar';
 import test from './Component/test';
@@ -36,15 +36,27 @@ const PrivateRoute = ({ component: Component, ...rest }) =>
 
 
 function App() {
+  
+  const [isAuthenticated, setisAuthenticated] = useState();
+
+  function handleisAuthenticated(val) {
+    setisAuthenticated(val);
+  }
+  
   return (
     
     <Router>
-    <ToastContainer/>
-    {/* <Navbar /> */}
-    <Headerbar/>
-    <Sidebar/>
+      {console.log("Test - ", isAuthenticated)}
+      <ToastContainer/>
+      {
+        isAuthenticated ? <Headerbar handleLogin={handleisAuthenticated}/>:null
+      }
+      {
+        isAuthenticated ? <Sidebar/>:null
+      }
     <Switch>
-      <Route exact path="/" component={Login} />
+      {/* <Route exact path="/" handleLogin={handleLogInChanged} component={Login} /> */}
+      <Route exact path="/" render={(props) => <Login {...props} handleLogin={handleisAuthenticated}/>}/>
       <Route path="/signup" component={SignUp} />
       <PrivateRoute path="/Home" component={Home}/>
       <PrivateRoute path="/tran" component={Transaction}/>

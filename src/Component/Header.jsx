@@ -2,12 +2,13 @@ import React, { Fragment } from 'react'
 import CompanyLogo from '../assets/img/CompanyLogo.png'
 import UserPhoto from '../assets/img/blank_profilepicture.png'
 
-function HeaderBar() {
+function HeaderBar(props) {
     function signOut() {
         localStorage.removeItem('token');
+        props.handleLogin(false);
     }
     
-    let isLoggedIn = localStorage.getItem('token') ? true : false;
+    let isLoggedIn = true; //localStorage.getItem('token') ? true : false;
 
     return(
         <Fragment>

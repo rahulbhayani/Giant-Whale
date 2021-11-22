@@ -2,11 +2,12 @@ import { Fragment } from 'react'
 
 function SideBar() {
 
-    let isLoggedIn = localStorage.getItem('token') ? true : false;
+    let isLoggedIn = true; //localStorage.getItem('token') ? true : false;
 
     return (
 
         <Fragment>
+            {console.log("Sidebar ")}
             {isLoggedIn ? 
             (<>         
                 {/* <!-- ======= Sidebar ======= --> */}

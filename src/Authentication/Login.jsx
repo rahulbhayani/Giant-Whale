@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import CompanyLogo from '../assets/img/CompanyLogo.png'
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const logindata = { email, password };
@@ -14,13 +14,14 @@ const Login = () => {
 
   const handleLogin = () => {
     if (!email || !password) {
-      //return toast.warning("Fill the details");
+      return toast.warning("Fill the details");
     } else {
       
       axios.post("http://localhost:5050/login", logindata).then((result) => {
         if (result.data.token) {
           localStorage.setItem("token", result.data.token);
-          // console.log(result);
+          props.handleLogin(true);
+          console.log("props - ", props.handleLogin);
           history.push({
             pathname: "/Home",
             state: result.data.email,
@@ -33,7 +34,7 @@ const Login = () => {
     }
   };
   return (
-
+    
     <main>
       <div class="container">
 
@@ -58,14 +59,14 @@ const Login = () => {
                       <p class="text-center small">Enter your username & password to login</p>
                     </div>
 
-                    <form class="row g-3 needs-validation" novalidate>
+                    <form class="row g-3 needs-validation" onSubmit={e => e.preventDefault()} novalidate>
 
                       <div class="col-12">
                         <label for="yourUsername" class="form-label">Username</label>
                         <div class="input-group has-validation">
                           <span class="input-group-text" id="inputGroupPrepend">@</span>
                           <input type="text" name="username" class="form-control" id="yourUsername" 
-                                  onChange={(e) => {setEmail(e.target.value); }} required/>
+                                  onChange={e => setEmail(e.target.value)} required/>
                           <div class="invalid-feedback">Please enter your username.</div>
                         </div>
                       </div>
@@ -73,7 +74,7 @@ const Login = () => {
                       <div class="col-12">
                         <label for="yourPassword" class="form-label">Password</label>
                         <input type="password" name="passwword" class="form-control" id="yourPassword"
-                                onChange={(e) => {setPassword(e.target.value); }} required/>
+                                onChange={e => setPassword(e.target.value)} required/>
                         <div class="invalid-feedback">Please enter your password!</div>
                       </div>
 
@@ -84,7 +85,7 @@ const Login = () => {
                         </div>
                       </div>
                       <div class="col-12">
-                        <button class="btn btn-primary w-100" onClick={() => handleLogin()}>Login</button>
+                        <button class="btn btn-primary w-100" onClick={handleLogin}>Login</button>
                       </div>
                       <div class="col-12">
                         <p class="small mb-0">Don't have account? <a href="/signup">Create an account</a></p>
